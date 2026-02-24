@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.env
+
+# Flask & pytest
+.pytest_cache/
+instance/
+
+# Airflow
+airflow.cfg
+airflow.db
+logs/
+
+# DVC & MLflow
+mlruns/
+.dvc/cache
+.dvc/tmp
+*.dvc
+!dvc.yaml
+!dvc.lock
+!data/raw.dvc
+!models.dvc
+
+# Jupyter/IDE
+.ipynb_checkpoints
+.vscode/
+.idea/
+
+# Ignore models and data directly (managed by DVC)
+data/processed/*.csv
+models/*.pkl
+report/*.json

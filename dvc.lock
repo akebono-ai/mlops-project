@@ -1,0 +1,55 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: data/raw/raw_weather_data.csv
+      hash: md5
+      md5: 16a1d9c928b79e401c23859d05fbe14c
+      size: 69974
+      isexec: true
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: ee3f9ec91d0a40c23f571596dd14bef3
+      size: 2151
+      isexec: true
+    outs:
+    - path: data/processed/processed_weather_data.csv
+      hash: md5
+      md5: 6924167700fdfef0c25d7c1090b08331
+      size: 141619
+      isexec: true
+    - path: models/label_encoder.pkl
+      hash: md5
+      md5: 72e4549002d8372cc0aa205d44e8e045
+      size: 374
+      isexec: true
+    - path: models/scaler.pkl
+      hash: md5
+      md5: bbab9be7d04dd2baf8edbbcf32dcb9f2
+      size: 782
+      isexec: true
+  train:
+    cmd: python src/train_model.py
+    deps:
+    - path: data/processed/processed_weather_data.csv
+      hash: md5
+      md5: 6924167700fdfef0c25d7c1090b08331
+      size: 141619
+      isexec: true
+    - path: src/train_model.py
+      hash: md5
+      md5: 3b4dfc3be1162582b2fdbe98e31f9bcc
+      size: 2569
+      isexec: true
+    outs:
+    - path: models/linear_reg_model.pkl
+      hash: md5
+      md5: d6b56f476000dd3fc758504d1e093fc3
+      size: 695
+      isexec: true
+    - path: report/metrics.json
+      hash: md5
+      md5: 11ed7ab215895562b158db32f00259f2
+      size: 95
+      isexec: true
