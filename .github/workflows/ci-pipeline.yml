@@ -33,6 +33,7 @@ jobs:
       - name: Run Unit Tests
         env:
           MONGO_URI: "mongodb://localhost:27017/"
+          PYTHONPATH: "."
         run: |
           pytest web_app/tests/
 
