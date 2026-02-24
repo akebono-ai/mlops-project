@@ -1,0 +1,12 @@
+pandas
+scikit-learn
+mlflow
+jupyter
+flask
+pymongo
+pytest
+pytest-flask
+requests
+dvc
+apache-airflow
+gunicorn

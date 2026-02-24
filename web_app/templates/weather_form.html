@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Weather - MLOps</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <span class="navbar-brand">Weather Predictor</span>
+            <div class="d-flex">
+                <span class="navbar-text me-3">Welcome, {{ session['user'] }}</span>
+                <a href="/logout" class="btn btn-outline-light btn-sm">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Enter Weather Conditions</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/predict">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Humidity (%)</label>
+                                    <input type="number" step="0.1" class="form-control" name="humidity" required
+                                        placeholder="e.g. 74" value="74">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Wind Speed (kph)</label>
+                                    <input type="number" step="0.1" class="form-control" name="wind_kph" required
+                                        placeholder="e.g. 10.5" value="10.5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Weather Condition</label>
+                                    <select class="form-select" name="condition">
+                                        <option value="Sunny">Sunny</option>
+                                        <option value="Partly cloudy">Partly cloudy</option>
+                                        <option value="Cloudy">Cloudy</option>
+                                        <option value="Overcast">Overcast</option>
+                                        <option value="Patchy rain possible">Patchy rain possible</option>
+                                        <option value="Light rain">Light rain</option>
+                                        <option value="Moderate rain">Moderate rain</option>
+                                        <option value="Heavy rain">Heavy rain</option>
+                                        <option value="Thunderstorm">Thunderstorm</option>
+                                        <option value="Clear">Clear</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Hour of Day (0-23)</label>
+                                    <input type="number" class="form-control" name="hour" required min="0" max="23"
+                                        value="14">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Day</label>
+                                    <input type="number" class="form-control" name="day" required min="1" max="31"
+                                        value="3">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Month</label>
+                                    <input type="number" class="form-control" name="month" required min="1" max="12"
+                                        value="5">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Day of Year</label>
+                                    <input type="number" class="form-control" name="day_of_year" required min="1"
+                                        max="366" value="125">
+                                </div>
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Predict Temperature</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+name: CD Pipeline
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Start Minikube
+        uses: medyagh/setup-minikube@latest
+
+      - name: Set Up Kubernetes Config
+        run: |
+          kubectl config use-context minikube
+
+      - name: Deploy MongoDB to Minikube
+        run: |
+          kubectl apply -f k8s/database.yaml
+
+      - name: Deploy Flask App to Minikube
+        run: |
+          kubectl apply -f k8s/app.yaml
+
+      - name: Verify Deployment
+        run: |
+          kubectl get pods
+          kubectl get services

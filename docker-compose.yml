@@ -1,0 +1,29 @@
+services:
+  database:
+    image: mongo:latest
+    container_name: weather_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - weather_net
+
+  app:
+    build: .
+    container_name: weather_flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://database:27017/
+    depends_on:
+      - database
+    networks:
+      - weather_net
+
+volumes:
+  mongo_data:
+
+networks:
+  weather_net:
+    driver: bridge
